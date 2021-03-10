@@ -30,6 +30,7 @@ services:
     user: 1000:1000
   composer:
     image: composer/composer
-    command: install
+    working_dir: /home/www/src/app
     volumes:
       - './apps/MLB-backend/:/home/www/src/app'
+    command: install
