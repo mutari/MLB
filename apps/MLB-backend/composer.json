@@ -62,7 +62,11 @@
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": {
+            "ext-gd": "1",
+            "php": "7.4"
+        }
     },
     "autoload": {
         "psr-4": {
@@ -98,12 +102,6 @@
         "symfony": {
             "allow-contrib": false,
             "require": "5.2.*"
-        }
-    },
-    "config": {
-        "platform": {
-            "php": "7.4",
-            "ext-gd": "1"
         }
     }
 }
