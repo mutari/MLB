@@ -28,3 +28,8 @@ services:
     env_file:
       - .env
     user: 1000:1000
+  composer:
+    image: composer/composer
+    command: install
+    volumes:
+      - './apps/MLB-backend/:/home/www/src/app'
