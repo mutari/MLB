@@ -36,9 +36,34 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/", name="index_main")
+     * @Route("/", name="index_main_get", methods={"GET"})
      */
-    public function index(Request $request, LoggerInterface $logger): Response
+    public function indexGET() {
+        return $this->render('MLBfrontend/index.html.twig');
+    }
+
+    /**
+     * @Route("/MLBfrontend/{name}/{end}", defaults={"end": ""})
+     */
+    public function getAssets($name, $end = "")
+    {
+
+        if($end == "")
+        {
+            $htmlResp = $this->render('/MLBfrontend/'.$name);
+            $htmlResp->headers->set('Content-Type', 'text/'.(explode('.', $name)[1] == 'js' ? 'javascript' : 'css'));
+            return $htmlResp;
+        }
+
+        $htmlResp = $this->render('/MLBfrontend/'.$name.'/'.$end);
+        $htmlResp->headers->set('Content-Type', 'text/'.(explode('.', $end)[1] == 'js' ? 'javascript' : 'css'));
+        return $htmlResp;
+    }
+
+    /**
+     * @Route("/", name="index_main_post", methods={"POST"})
+     */
+    public function indexPOST(Request $request, LoggerInterface $logger): Response
     {
         try {
             $user = $this->getUser();
