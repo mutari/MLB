@@ -42,6 +42,7 @@ class UserController extends AbstractController
         return $this->render('MLBfrontend/index.html.twig');
     }
 
+    // get assets
     /**
      * @Route("/MLBfrontend/{name}/{end}", defaults={"end": ""})
      */
@@ -162,9 +163,9 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+            /*$token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
             $this->container->get('security.token_storage')->setToken($token);
-            $this->container->get('session')->set('_security_main', serialize($token));
+            $this->container->get('session')->set('_security_main', serialize($token));*/
 
             return new Response(json_encode([
                 "response" => "acount created",
@@ -173,7 +174,7 @@ class UserController extends AbstractController
         } catch (\Exception $e) {
             dump($e);
             return new Response(json_encode([
-                "response" => "error",
+                "response" => 'somthing whetn wrong ',
                 "status" => 404
             ]));
         }
@@ -185,15 +186,15 @@ class UserController extends AbstractController
     public function logout() {
 
         return $this->redirectToRoute('logout');
-
-        //$this->get('security.token_storage')->setToken(null);
-        //$this->get('session')->invalidate();
 /*
+        $this->get('security.token_storage')->setToken(null);
+        $this->get('session')->invalidate();
+
         return new Response(json_encode([
             "response" => "you are logged out",
             "status" => 200
         ]));
-  */
+*/
     }
 
     /**
