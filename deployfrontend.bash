@@ -18,4 +18,4 @@ echo "!!!!-"
 cp "${CPFROM}/build/bundle.js" "${CPTO}/build/bundle.js"
 echo "!!!!!"
 
-echo "dun"
+echo "done"
