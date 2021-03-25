@@ -51,6 +51,7 @@ class ApiController extends AbstractController
             $mp3File = $request->files->get("fileMP3");
 
             if(isset($file)) {
+                dump($this->uploadLyricsFile($file));
                 $song->setLyricsImagePath($this->uploadLyricsFile($file)['fileName'] ?? '');
             }
 
@@ -392,7 +393,7 @@ class ApiController extends AbstractController
                 $imagick->writeImages($destination.'/'.$newPdfFilename, false);
 
                 unlink($destination.'/'.$newFilename);
-            } catch (Exception $e) { return ['error' >= $e->getMessage()]; }
+            } catch (Exception $e) { return ['error' => $e->getMessage()]; }
 
             $newFilename = $newPdfFilename;
         }
